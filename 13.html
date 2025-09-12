@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Midjourney (V1 Video)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 30px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+        }
+
+        .service-overview {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .overview-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+        }
+
+        .overview-title i {
+            margin-right: 10px;
+            color: #2563EB;
+        }
+
+        .overview-text p {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .chart-container {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 30px;
+            height: 320px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-wrapper {
+            width: 95%;
+            height: 285px;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        .pros,
+        .cons {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pros-title,
+        .cons-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pros-title {
+            color: #10B981;
+        }
+
+        .cons-title {
+            color: #EF4444;
+        }
+
+        .pros-title i,
+        .cons-title i {
+            margin-right: 8px;
+        }
+
+        .pros-list,
+        .cons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pros-item,
+        .cons-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .pros-item:before,
+        .cons-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .pros-item:before {
+            background-color: #10B981;
+        }
+
+        .cons-item:before {
+            background-color: #EF4444;
+        }
+
+        .use-case {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            grid-column: span 2;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .use-case-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .use-case-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .use-case-item {
+            background-color: #E5E7EB;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-item i {
+            margin-right: 6px;
+            font-size: 12px;
+            color: #4B5563;
+        }
+
+        .pricing {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pricing-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        .pricing-plan {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .plan-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .plan-price {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #2563EB;
+        }
+
+        .plan-features {
+            font-size: 12px;
+            color: #6B7280;
+        }
+
+        .rights {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+            font-size: 13px;
+            color: #92400E;
+            border-radius: 4px;
+        }
+
+        .rights-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rights-title i {
+            margin-right: 6px;
+        }
+
+        .impression {
+            background-color: #EFF6FF;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            grid-column: span 2;
+            border-left: 4px solid #2563EB;
+            font-size: 14px;
+            color: #1E40AF;
+        }
+
+        .impression-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .impression-title i {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">Midjourney (V1 Video)</h1>
+            <div class="accent-bar"></div>
+            <div class="main-grid">
+                <div class="service-overview">
+                    <h2 class="overview-title"><i class="fas fa-info-circle"></i>サービス概要</h2>
+                    <div class="overview-text">
+                        <p>画像生成AIのMidjourneyが提供する「V1 Video」は静止画から動画への変換機能です。<br /><br />
+                            静止画1枚をStarting Frameとして指定し、テキストで動きを指示することで初期5秒の短尺動画を生成でき、最大21秒まで延長可能です。<br /><br />
+                            解像度はSD(480p)またはHD(720p)に対応し、アスペクト比は入力画像に準拠します。<br /><br />
+                            利用はWebインターフェイスとDiscordの両方から可能で、生成結果は無音のMP4またはGIF形式で出力されます。<br /><br />
+                            --motion lowや--motion highで動き量を調整したり、--loopでループ設定、--endでEnding
+                            Frameを別画像に指定するといったオプションも備えています。</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">パフォーマンス評価（8軸）</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h3 class="pros-title"><i class="fas fa-plus-circle"></i>長所</h3>
+                            <ul class="pros-list">
+                                <li class="pros-item">画像スタイルの一貫性に優れている</li>
+                                <li class="pros-item">高品質なシネマグラフ風動画の作成が得意</li>
+                                <li class="pros-item">HD(720p)出力にも対応（Standard以上）</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h3 class="cons-title"><i class="fas fa-minus-circle"></i>短所</h3>
+                            <ul class="cons-list">
+                                <li class="cons-item">音声対応がなく無音での出力のみ</li>
+                                <li class="cons-item">GPUコストが比較的高い（HDモードは特に）</li>
+                                <li class="cons-item">長尺・多ショットの物語映像には不向き</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="use-case">
+                <h3 class="use-case-title"><i class="fas fa-lightbulb"></i>主なユースケース</h3>
+                <div class="use-case-list">
+                    <span class="use-case-item"><i class="fas fa-check"></i>イラストや写真に微妙な動きを付与</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>シネマグラフ風の短尺ループ動画</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>アートスタイル重視の表現</span>
+                </div>
+            </div>
+            <div class="impression">
+                <h3 class="impression-title"><i class="fas fa-comment-dots"></i>所感（実際の使用体験）</h3>
+                <p>無料では画像も生成できないので、実際の操作感を体験するには有料プランへの加入が必須です。<br /><br />
+                    生成された作品を見る限りでは、品質は高くドリフトも少なく安定した結果が得られる印象です。<br /><br />
+                    画像から動画を生成するタイプで、Midjourneyでも画像の生成は可能ですが、動画の利用枠と食い合うため別ツールで画像を用意した方が効率的でした。<br /><br />
+                    GPU時間制の課金体系のため、特にHDモードでの大量生成は予算管理が必要です。</p>
+            </div>
+            <div class="pricing">
+                <h3 class="pricing-title"><i class="fas fa-tag"></i>料金プラン</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-plan">
+                        <div class="plan-name">Basic</div>
+                        <div class="plan-price">$10 / 月</div>
+                        <div class="plan-features">3.3h GPU時間、SD動画のみ</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">Standard</div>
+                        <div class="plan-price">$30 / 月</div>
+                        <div class="plan-features">15h GPU時間、HD対応(Fast)</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">Pro</div>
+                        <div class="plan-price">$60 / 月</div>
+                        <div class="plan-features">30h GPU、SD無制限(Relax)</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">Mega</div>
+                        <div class="plan-price">$120 / 月</div>
+                        <div class="plan-features">60h GPU、SD無制限(Relax)</div>
+                    </div>
+                </div>
+                <div class="rights">
+                    <div class="rights-title"><i class="fas fa-exclamation-triangle"></i>透かし・権利注記</div>
+                    <p>有料会員は商用利用可能（年商$1M超の法人はPro/Mega必須）。GPUコストはSD 4本=8分、HD 4本=26分相当が目安。動画は無音出力のため、音声は別途追加が必要。</p>
+                </div>
+            </div>
+            <script>
+                const ctx = document.getElementById('radarChart');
+
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['生成品質', '指示追従性', '一貫性', '速度/安定性', 'コスト効率', 'SNS対応', '音声対応', '機能/エコシステム'],
+                        datasets: [{
+                            label: 'Midjourney (V1 Video)',
+                            data: [4, 3, 4, 3, 3, 3, 1, 3],
+                            fill: true,
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: 'rgba(37, 99, 235, 0.8)',
+                            pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        elements: {
+                            line: {
+                                borderWidth: 2
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    display: true
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 5,
+                                ticks: {
+                                    stepSize: 1
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        layout: {
+                            padding: 20
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

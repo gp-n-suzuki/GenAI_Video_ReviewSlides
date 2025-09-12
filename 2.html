@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>目次</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 50px 80px;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .toc-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 15px 60px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .toc-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2563EB;
+            margin-right: 15px;
+            min-width: 28px;
+        }
+
+        .toc-text {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 40px;
+        }
+
+        .highlight {
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">目次</h1>
+            <div class="accent-bar"></div>
+            <div class="toc-container">
+                <div class="toc-item">
+                    <span class="toc-number">1.</span>
+                    <span class="toc-text">表紙</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">2.</span>
+                    <span class="toc-text">目次</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">3.</span>
+                    <span class="toc-text">エグゼクティブサマリー</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">4.</span>
+                    <span class="toc-text">全体比較表</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">5.</span>
+                    <span class="toc-text">用途×推奨マトリクス</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">6.</span>
+                    <span class="toc-text">評価軸の定義</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">7.</span>
+                    <span class="toc-text">OpenAI Sora</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">8.</span>
+                    <span class="toc-text">Kling AI</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">9.</span>
+                    <span class="toc-text">Google Veo 3</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">10.</span>
+                    <span class="toc-text">Luma AI Dream Machine</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">11.</span>
+                    <span class="toc-text">Runway</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">12.</span>
+                    <span class="toc-text">Pika Labs</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">13.</span>
+                    <span class="toc-text">Midjourney</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">14.</span>
+                    <span class="toc-text">DeeVid AI</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">15.</span>
+                    <span class="toc-text">まとめ</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">16.</span>
+                    <span class="toc-text">付録</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-number">17.</span>
+                    <span class="toc-text">次アクション</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

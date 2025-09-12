@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pika Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 30px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+        }
+
+        .service-overview {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .overview-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+        }
+
+        .overview-title i {
+            margin-right: 10px;
+            color: #2563EB;
+        }
+
+        .overview-text {
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .overview-text p {
+            margin-bottom: 12px;
+        }
+
+        .chart-container {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 30px;
+            height: 320px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .chart-wrapper {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        .pros,
+        .cons {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pros-title,
+        .cons-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pros-title {
+            color: #10B981;
+        }
+
+        .cons-title {
+            color: #EF4444;
+        }
+
+        .pros-title i,
+        .cons-title i {
+            margin-right: 8px;
+        }
+
+        .pros-list,
+        .cons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pros-item,
+        .cons-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .pros-item:before,
+        .cons-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .pros-item:before {
+            background-color: #10B981;
+        }
+
+        .cons-item:before {
+            background-color: #EF4444;
+        }
+
+        .use-case {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            grid-column: span 2;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .use-case-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .use-case-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .use-case-item {
+            background-color: #E5E7EB;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-item i {
+            margin-right: 6px;
+            font-size: 12px;
+            color: #4B5563;
+        }
+
+        .pricing {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pricing-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 15px;
+        }
+
+        .pricing-plan {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .plan-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .plan-price {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #2563EB;
+        }
+
+        .plan-features {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .rights {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+            font-size: 13px;
+            color: #92400E;
+            border-radius: 4px;
+        }
+
+        .rights-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rights-title i {
+            margin-right: 6px;
+        }
+
+        .user-experience {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #EFF6FF;
+            border-left: 4px solid #2563EB;
+            font-size: 13px;
+            color: #1E3A8A;
+            border-radius: 4px;
+        }
+
+        .user-experience-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-experience-title i {
+            margin-right: 6px;
+        }
+
+        .user-experience p {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">Pika Labs</h1>
+            <div class="accent-bar"></div>
+            <div class="main-grid">
+                <div class="service-overview">
+                    <h2 class="overview-title"><i class="fas fa-info-circle"></i>サービス概要</h2>
+                    <div class="overview-text">
+                        <p>Pika Labs（通称Pika）は、テキストや画像から高品質な短尺動画を生成できる個人向けAI動画ジェネレーターです。<br />現行のPika
+                            2.2では720p/1080pの解像度で基本5秒または10秒の動画生成が可能であり、Pikaframesを使用することで最長25秒まで拡張できます。</p>
+                        <p>最大の特徴はコミュニティ主導のテンプレート機能（Pikascenes、Pikaswaps、Pikadditions、Pikatwistsなど）です。<br />これにより専門知識がなくても他のクリエイターの作品をベースに創造的な映像制作が可能です。<br />さらに、ウェブ版ではSFX（効果音）生成やリップシンク機能も提供されており、音声付きの統合された映像体験を作成できます。
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">パフォーマンス評価（8軸）</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h3 class="pros-title"><i class="fas fa-plus-circle"></i>長所</h3>
+                            <ul class="pros-list">
+                                <li class="pros-item">SNSシェア向きのカジュアル用途に最適</li>
+                                <li class="pros-item">コミュニティの創作テンプレートを活用可能</li>
+                                <li class="pros-item">月$10〜と価格が控えめで負担が少ない</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h3 class="cons-title"><i class="fas fa-minus-circle"></i>短所</h3>
+                            <ul class="cons-list">
+                                <li class="cons-item">ビジネス利用での安定稼働には向かない</li>
+                                <li class="cons-item">サポート体制が脆弱で仕様変更が頻繁</li>
+                                <li class="cons-item">出力が低解像・短尺で汎用性が限定的</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="use-case">
+                <h3 class="use-case-title"><i class="fas fa-lightbulb"></i>主なユースケース</h3>
+                <div class="use-case-list">
+                    <span class="use-case-item"><i class="fas fa-check"></i>SNSショート動画作成</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>カジュアルな映像ネタのシェア</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>専門知識不要の創造的な映像制作</span>
+                </div>
+            </div>
+            <div class="pricing">
+                <h3 class="pricing-title"><i class="fas fa-tag"></i>料金プラン</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-plan">
+                        <div class="plan-name">Standard</div>
+                        <div class="plan-price">$10 / 月</div>
+                        <div class="plan-features">700クレジット／月・商用利用可・透かしなし</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">Pro</div>
+                        <div class="plan-price">$35 / 月</div>
+                        <div class="plan-features">2300クレジット／月・商用利用可・透かしなし</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">Fancy</div>
+                        <div class="plan-price">$95 / 月</div>
+                        <div class="plan-features">6000クレジット／月・商用利用可・透かしなし</div>
+                    </div>
+                </div>
+                <div class="rights">
+                    <div class="rights-title"><i class="fas fa-exclamation-triangle"></i>透かし・権利注記</div>
+                    <p>無料枠でも毎月80クレジット（約5本分）が付与されますが、Turboモードでは1本あたり5クレ、Proモードでは20〜80クレ消費します。<br />全プランで商用利用可・透かしなし。<br />クレジット超過時は追加購入も可能です。
+                    </p>
+                </div>
+                <div class="user-experience">
+                    <div class="user-experience-title"><i class="fas fa-comments"></i>所感（実際の使用体験）</div>
+                    <p>UIが日本語に対応しておらず、機能も多いため、どのような機能があるのかを把握するのが少し大変です。<br />クレジット消費量も機能によってバラバラなので、予算管理には注意が必要です。</p>
+                    <p>無料版では生成に時間がかかりますが、有料プランであれば問題なく使えると思われます。<br />1から動画を生成するというよりも、既存動画の加工や編集が得意なツールという印象です。<br />テンプレートやエフェクト機能が豊富で、手軽にSNS映えする動画が作れる点が魅力的です。
+                    </p>
+                </div>
+            </div>
+            <script>
+                const ctx = document.getElementById('radarChart');
+
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['生成品質', '指示追従性', '一貫性', '速度/安定性', 'コスト効率', 'SNS対応', '音声対応', '機能/エコシステム'],
+                        datasets: [{
+                            label: 'Pika Labs',
+                            data: [3, 3, 3, 3, 4, 4, 3, 3],
+                            fill: true,
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: 'rgba(37, 99, 235, 0.8)',
+                            pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        elements: {
+                            line: {
+                                borderWidth: 2
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    display: true
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 5,
+                                ticks: {
+                                    stepSize: 1
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

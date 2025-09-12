@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>全体比較（A）：サービス主要指標一覧</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 30px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th {
+            background-color: #F3F4F6;
+            font-weight: 700;
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid #E5E7EB;
+        }
+
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 15px;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #F9FAFB;
+        }
+
+        .highlight {
+            color: #2563EB;
+            font-weight: 600;
+        }
+
+        .warning {
+            color: #DC2626;
+            font-weight: 500;
+        }
+
+        .positive {
+            color: #10B981;
+            font-weight: 500;
+        }
+
+        .icon {
+            margin-right: 6px;
+            font-size: 16px;
+        }
+
+        .service-name {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .caption {
+            font-size: 15px;
+            color: #4B5563;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">全体比較（A）：サービス主要指標一覧</h1>
+            <div class="accent-bar"></div>
+            <p class="caption">主要8サービスの基本情報・機能・権利についての比較</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th width="18%">サービス名</th>
+                        <th width="17%"><i class="fas fa-yen-sign icon"></i>価格（月額）</th>
+                        <th width="15%"><i class="fas fa-film icon"></i>生成上限</th>
+                        <th width="12%"><i class="fas fa-volume-up icon"></i>音声対応</th>
+                        <th width="12%"><i class="fas fa-briefcase icon"></i>商用利用</th>
+                        <th width="10%"><i class="fas fa-stamp icon"></i>透かし</th>
+                        <th width="16%">主な強み</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="service-name">OpenAI Sora</td>
+                        <td>$20〜$200<br /><span class="highlight">定額制</span></td>
+                        <td>無制限<br />(レート制限あり)</td>
+                        <td><i class="fas fa-times-circle warning"></i> なし</td>
+                        <td><i class="fas fa-check-circle positive"></i> 可能</td>
+                        <td>Proで除去可</td>
+                        <td>短尺多数の試作に最適</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Kling AI</td>
+                        <td>$7〜$65<br />(クレジット制)</td>
+                        <td>650〜3000<br />クレジット/月</td>
+                        <td><i class="fas fa-check-circle positive"></i> 効果音＋音声</td>
+                        <td><i class="fas fa-check-circle positive"></i> 可能</td>
+                        <td>有料で除去</td>
+                        <td>長尺対応(最大2分)</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Google Veo 3</td>
+                        <td>¥2,900〜¥36,400<br />(クレジット制)</td>
+                        <td>1,000〜25,000<br />クレジット/月</td>
+                        <td><i class="fas fa-check-circle positive"></i> <span class="highlight">自動生成</span></td>
+                        <td><i class="fas fa-check-circle positive"></i> 可能</td>
+                        <td>なし</td>
+                        <td>音声・映像一体高品質</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Luma AI</td>
+                        <td>$10〜$95<br />(クレジット制)</td>
+                        <td>3,200〜10,000<br />クレジット/月</td>
+                        <td><i class="fas fa-check-circle positive"></i> 追加可能</td>
+                        <td><i class="fas fa-check-circle positive"></i> Plus以上</td>
+                        <td>Plus以上で除去</td>
+                        <td>高精細な質感表現</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Runway</td>
+                        <td>$15〜$95<br />(クレジット制)</td>
+                        <td>625〜2,250+<br />クレジット/月</td>
+                        <td><i class="fas fa-check-circle"></i> 別途機能</td>
+                        <td><i class="fas fa-check-circle positive"></i> 可能</td>
+                        <td>なし</td>
+                        <td>編集機能との統合性</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Pika Labs</td>
+                        <td>$10〜$95<br />(クレジット制)</td>
+                        <td>700〜6,000<br />クレジット/月</td>
+                        <td><i class="fas fa-check-circle"></i> Webのみ</td>
+                        <td><i class="fas fa-check-circle positive"></i> 有料プラン</td>
+                        <td>有料で除去</td>
+                        <td>SNS向けテンプレ豊富</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Midjourney</td>
+                        <td>$10〜$120<br />(GPU時間制)</td>
+                        <td>3.3〜60時間<br />GPU利用/月</td>
+                        <td><i class="fas fa-times-circle warning"></i> なし</td>
+                        <td><i class="fas fa-check-circle positive"></i> 有料会員</td>
+                        <td>なし</td>
+                        <td>画像→動きの品質</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">DeeVid AI</td>
+                        <td>$14〜$159<br />(クレジット制)</td>
+                        <td>200〜3,000<br />クレジット/月</td>
+                        <td><i class="fas fa-check-circle positive"></i> リップシンク</td>
+                        <td><i class="fas fa-check-circle positive"></i> 可能</td>
+                        <td>有料で除去</td>
+                        <td>モバイル完結制作</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note">※価格は税抜表示（Google Veo 3のみ税込円換算）。機能・料金は2025年9月時点の情報であり、変更の可能性があります。</p>
+        </div>
+    </div>
+</body>
+
+</html>

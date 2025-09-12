@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>OpenAI Sora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 30px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+        }
+
+        .service-overview {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .overview-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+        }
+
+        .overview-title i {
+            margin-right: 10px;
+            color: #2563EB;
+        }
+
+        .overview-text {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .chart-container {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 30px;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .chart-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        .pros,
+        .cons {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pros-title,
+        .cons-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pros-title {
+            color: #10B981;
+        }
+
+        .cons-title {
+            color: #EF4444;
+        }
+
+        .pros-title i,
+        .cons-title i {
+            margin-right: 8px;
+        }
+
+        .pros-list,
+        .cons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pros-item,
+        .cons-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .pros-item:before,
+        .cons-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .pros-item:before {
+            background-color: #10B981;
+        }
+
+        .cons-item:before {
+            background-color: #EF4444;
+        }
+
+        .use-case {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            grid-column: span 2;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .use-case-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .use-case-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .use-case-item {
+            background-color: #E5E7EB;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-item i {
+            margin-right: 6px;
+            font-size: 12px;
+            color: #4B5563;
+        }
+
+        .pricing {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pricing-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 15px;
+        }
+
+        .pricing-plan {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .plan-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .plan-price {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #2563EB;
+        }
+
+        .plan-features {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .rights {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+            font-size: 13px;
+            color: #92400E;
+            border-radius: 4px;
+        }
+
+        .rights-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rights-title i {
+            margin-right: 6px;
+        }
+
+        .impression {
+            background-color: #EFF6FF;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            grid-column: span 2;
+            border-left: 4px solid #2563EB;
+            font-size: 14px;
+            color: #1E40AF;
+        }
+
+        .impression-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .impression-title i {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">OpenAI Sora</h1>
+            <div class="accent-bar"></div>
+            <div class="main-grid">
+                <div class="service-overview">
+                    <h2 class="overview-title"><i class="fas fa-info-circle"></i>サービス概要</h2>
+                    <p class="overview-text">
+                        OpenAI初のテキスト生成AI動画モデル「Sora」は、2024年12月にChatGPT向け追加機能として一般提供されました。<br /><br />
+                        ChatGPT Plus ($20/月) またはPro
+                        ($200/月)に加入することで追加費用なく利用でき、最大20秒・1080pの動画クリップを生成できます（Plusプランは最大10秒・480p）。<br /><br />
+                        プロンプトにテキスト・画像・既存動画を組み合わせて細かな演出指示も可能で、生成された動画の知的財産権は利用者に帰属します。<br /><br />
+                        商用利用も可能ですが、Plusプランでは透かしが付与されます。
+                    </p>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">パフォーマンス評価（8軸）</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h3 class="pros-title"><i class="fas fa-plus-circle"></i>長所</h3>
+                            <ul class="pros-list">
+                                <li class="pros-item">低コスト（月額$20から）で商用利用も可能</li>
+                                <li class="pros-item">無制限に生成可能（レート制限はあり）</li>
+                                <li class="pros-item">ChatGPTの他機能も併用できる</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h3 class="cons-title"><i class="fas fa-minus-circle"></i>短所</h3>
+                            <ul class="cons-list">
+                                <li class="cons-item">音声トラックは付与されない（別途追加が必要）</li>
+                                <li class="cons-item">プロンプトの指示に従いにくい場合がある</li>
+                                <li class="cons-item">ドリフト発生率が高い</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="use-case">
+                <h3 class="use-case-title"><i class="fas fa-lightbulb"></i>主なユースケース</h3>
+                <div class="use-case-list">
+                    <span class="use-case-item"><i class="fas fa-check"></i>SNS投稿用の短いクリップ生成</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>動画広告のラフ案作成</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>素材としての活用</span>
+                </div>
+            </div>
+            <div class="impression">
+                <h3 class="impression-title"><i class="fas fa-comment-dots"></i>所感（実際の使用体験）</h3>
+                <p>クレジット制ではなく無制限で作成できるので、とにかく量を作れるのが強みです。<br /><br />
+                    その反面、プロンプトの指示には従いづらく、ドリフトの発生率も高いため、狙った動画を作成するのは難しい印象です。<br /><br />
+                    量を作成してその中から良いものを選択していく戦略が効果的でした。<br /><br />
+                    リカットやループなどの編集機能が便利で、ThinkingモードやDeepResearchが使える回数が増えるのも副次的なメリットとなっています。</p>
+            </div>
+            <div class="pricing">
+                <h3 class="pricing-title"><i class="fas fa-tag"></i>料金プラン</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-plan">
+                        <div class="plan-name">ChatGPT Plus</div>
+                        <div class="plan-price">$20 / 月</div>
+                        <div class="plan-features">最大10秒・480p・透かしあり</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">ChatGPT Pro</div>
+                        <div class="plan-price">$200 / 月</div>
+                        <div class="plan-features">最大20秒・1080p・透かしなし</div>
+                    </div>
+                </div>
+                <div class="rights">
+                    <div class="rights-title"><i class="fas fa-exclamation-triangle"></i>透かし・権利注記</div>
+                    <p>Plusプランは透かし（ウォーターマーク）あり。Proプランは透かしなし。いずれのプランも生成物の知的財産権は利用者に帰属します。</p>
+                </div>
+            </div>
+            <script>
+                const ctx = document.getElementById('radarChart');
+
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['生成品質', '指示追従性', '一貫性', '速度/安定性', 'コスト効率', 'SNS対応', '音声対応', '機能/エコシステム'],
+                        datasets: [{
+                            label: 'OpenAI Sora',
+                            data: [3, 2, 2, 3, 5, 4, 1, 4],
+                            fill: true,
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: 'rgba(37, 99, 235, 0.8)',
+                            pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        elements: {
+                            line: {
+                                borderWidth: 2
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    display: true
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 5,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

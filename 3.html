@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>エグゼクティブサマリー</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 50px 80px;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 40px;
+        }
+
+        .summary-text {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 1000px;
+        }
+
+        .key-points {
+            margin-top: 20px;
+        }
+
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .point-icon {
+            color: #2563EB;
+            font-size: 20px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        .point-text {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">エグゼクティブサマリー</h1>
+            <div class="accent-bar"></div>
+            <div class="summary-text">
+                本資料では主要8種の動画生成AIサービスの強み・コスト・注意点を迅速に把握できます。現状の技術水準・用途別適性・今後の調達方針を短時間で比較検討できる構成です。非エンジニアでも理解しやすいよう専門用語を最小限に抑え、視覚的な比較に重点を置いています。
+            </div>
+            <div class="key-points">
+                <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 20px; color: #111827;">【要点】</h2>
+                <div class="key-point">
+                    <span class="point-icon"><i class="fas fa-circle-check"></i></span>
+                    <span class="point-text">生成品質とコスト効率のトレードオフが明確：高品質な<span class="highlight">Google Veo 3・Luma
+                            AI</span>は費用が高く、<span class="highlight">OpenAI Sora</span>は品質とコストのバランスが良い</span>
+                </div>
+                <div class="key-point">
+                    <span class="point-icon"><i class="fas fa-circle-check"></i></span>
+                    <span class="point-text">強みやユースケースは用途で大きく異なる：SNS向き・長尺向き・リアル調・アニメ風など、目的に合わせた選定が重要</span>
+                </div>
+                <div class="key-point">
+                    <span class="point-icon"><i class="fas fa-circle-check"></i></span>
+                    <span class="point-text">商用利用範囲や透かし有無は必ず要確認：各サービスで権利関係の規定が異なり、利用前の確認が不可欠</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

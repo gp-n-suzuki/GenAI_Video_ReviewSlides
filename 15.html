@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>まとめ：用途別推奨シナリオ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 50px 80px;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2563EB;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 40px;
+        }
+
+        .highlight {
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0 4px;
+        }
+
+        .scenario {
+            margin-bottom: 25px;
+        }
+
+        .scenario-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #2563EB;
+            color: white;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .recommendation {
+            padding-left: 44px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .service-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-right: 10px;
+            min-width: 130px;
+        }
+
+        .tag-primary {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: #2563EB;
+        }
+
+        .tag-secondary {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+
+        .checklist-container {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-top: 30px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .checkbox {
+            min-width: 22px;
+            height: 22px;
+            border: 2px solid #2563EB;
+            border-radius: 4px;
+            margin-right: 12px;
+            position: relative;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 30px 0;
+        }
+
+        .scenarios-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">まとめ：用途別推奨シナリオ</h1>
+            <div class="accent-bar"></div>
+            <div class="scenarios-container">
+                <div class="scenario-section">
+                    <div class="scenario">
+                        <div class="scenario-title">
+                            <span class="icon-circle">1</span>
+                            SNS向け短尺動画シナリオ
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-primary">第一推奨</span>
+                            <span>Google Veo 3（音声込み高品質）</span>
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-secondary">代替案</span>
+                            <span>Pika Labs（コスト重視）</span>
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-secondary">代替案</span>
+                            <span>OpenAI Sora（量産試作）</span>
+                        </div>
+                    </div>
+                    <div class="scenario">
+                        <div class="scenario-title">
+                            <span class="icon-circle">2</span>
+                            プロ品質/フォトリアル重視
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-primary">第一推奨</span>
+                            <span>Luma AI（質感・光表現が最高峰）</span>
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-secondary">代替案</span>
+                            <span>Google Veo 3（音声との統合性）</span>
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-secondary">代替案</span>
+                            <span>Runway（編集統合ワークフロー）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <div class="scenario">
+                        <div class="scenario-title">
+                            <span class="icon-circle">3</span>
+                            量産試作/コスト効率重視
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-primary">第一推奨</span>
+                            <span>OpenAI Sora（月額固定・制限緩め）</span>
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-secondary">代替案</span>
+                            <span>Kling AI（基本無料枠あり）</span>
+                        </div>
+                        <div class="recommendation">
+                            <span class="service-tag tag-secondary">代替案</span>
+                            <span>Pika Labs（Standard $10～）</span>
+                        </div>
+                    </div>
+                    <div class="checklist-container">
+                        <div class="section-title" style="margin-top: 0;">次のアクション</div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>トップ3サービスの無料トライアル登録</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>同一プロンプトでの比較生成テスト実施</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>用途別ワークフロー検証と工数見積</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox"></div>
+                            <div>導入・サポートプラン検討と予算確保</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

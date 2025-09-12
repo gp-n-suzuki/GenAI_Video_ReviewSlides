@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>全体比較（B）：用途×推奨サービスマトリクス</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 30px;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .matrix-table th {
+            background-color: #F3F4F6;
+            font-weight: 700;
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid #E5E7EB;
+        }
+
+        .matrix-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .matrix-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .matrix-table tr:nth-child(even) {
+            background-color: #F9FAFB;
+        }
+
+        .service-name {
+            font-weight: 700;
+            color: #111827;
+            text-align: left;
+        }
+
+        .usecase {
+            font-weight: 600;
+            text-align: center;
+            background-color: #F3F4F6;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .caption {
+            font-size: 15px;
+            color: #4B5563;
+            margin-bottom: 20px;
+        }
+
+        .rating-5 {
+            color: #2563EB;
+            font-size: 18px;
+        }
+
+        .rating-4 {
+            color: #3B82F6;
+            font-size: 18px;
+        }
+
+        .rating-3 {
+            color: #60A5FA;
+            font-size: 18px;
+        }
+
+        .rating-2 {
+            color: #93C5FD;
+            font-size: 18px;
+        }
+
+        .rating-1 {
+            color: #BFDBFE;
+            font-size: 18px;
+        }
+
+        .best-pick {
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+
+        .legend-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .use-case-description {
+            font-size: 14px;
+            color: #4B5563;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">全体比較（B）：用途×推奨サービスマトリクス</h1>
+            <div class="accent-bar"></div>
+            <p class="caption">目的に合わせた最適サービス選定のための推奨度マトリクス</p>
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th width="18%">サービス名</th>
+                        <th width="16.4%"><i class="fas fa-mobile-alt"></i> SNS短尺映像</th>
+                        <th width="16.4%"><i class="fas fa-camera"></i> リアル寄り映像</th>
+                        <th width="16.4%"><i class="fas fa-paint-brush"></i> アニメ/イラスト</th>
+                        <th width="16.4%"><i class="fas fa-film"></i> 長尺編集/合成</th>
+                        <th width="16.4%"><i class="fas fa-coins"></i> 試作重視/低コスト</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="service-name">OpenAI Sora</td>
+                        <td class="best-pick"><span class="rating-5">★★★★★</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-2">★★☆☆☆</span></td>
+                        <td class="best-pick"><span class="rating-5">★★★★★</span></td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Kling AI</td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td class="best-pick"><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-4">★★★★☆</span></td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Google Veo 3</td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td class="best-pick"><span class="rating-5">★★★★★</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-2">★★☆☆☆</span></td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Luma AI</td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td class="best-pick"><span class="rating-5">★★★★★</span></td>
+                        <td><span class="rating-2">★★☆☆☆</span></td>
+                        <td><span class="rating-2">★★☆☆☆</span></td>
+                        <td><span class="rating-2">★★☆☆☆</span></td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Runway</td>
+                        <td class="best-pick"><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-4">★★★★☆</span></td>
+                        <td class="best-pick"><span class="rating-5">★★★★★</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Pika Labs</td>
+                        <td class="best-pick"><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td class="best-pick"><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-2">★★☆☆☆</span></td>
+                        <td><span class="rating-4">★★★★☆</span></td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Midjourney</td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-4">★★★★☆</span></td>
+                        <td class="best-pick"><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-2">★★☆☆☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">DeeVid AI</td>
+                        <td class="best-pick"><span class="rating-4">★★★★☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                        <td><span class="rating-3">★★★☆☆</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="legend-container">
+                <div class="legend-item">
+                    <span class="rating-5">★★★★★</span>
+                    <span class="use-case-description">最適</span>
+                </div>
+                <div class="legend-item">
+                    <span class="rating-4">★★★★☆</span>
+                    <span class="use-case-description">優秀</span>
+                </div>
+                <div class="legend-item">
+                    <span class="rating-3">★★★☆☆</span>
+                    <span class="use-case-description">良好</span>
+                </div>
+                <div class="legend-item">
+                    <span class="rating-2">★★☆☆☆</span>
+                    <span class="use-case-description">可能だが制限あり</span>
+                </div>
+                <div class="legend-item">
+                    <i class="fas fa-check-circle" style="color: #10B981; margin-right: 4px;"></i>
+                    <span class="use-case-description">用途別おすすめ</span>
+                </div>
+            </div>
+            <p class="note">※緑色のハイライトは各用途において特に推奨されるサービス。評価は2025年9月時点の情報に基づく。</p>
+        </div>
+    </div>
+</body>
+
+</html>

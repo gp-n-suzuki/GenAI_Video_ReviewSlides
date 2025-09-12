@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>評価軸の定義（8項目の説明）</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 30px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            grid-gap: 40px;
+        }
+
+        .axis-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px 40px;
+        }
+
+        .axis-item {
+            position: relative;
+            padding: 15px 20px;
+            border-radius: 8px;
+            background-color: #F9FAFB;
+            border-left: 4px solid #2563EB;
+            margin-bottom: 10px;
+        }
+
+        .axis-number {
+            position: absolute;
+            top: 12px;
+            left: -12px;
+            width: 24px;
+            height: 24px;
+            background-color: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .axis-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: #111827;
+            margin-bottom: 8px;
+            padding-left: 16px;
+        }
+
+        .axis-desc {
+            font-size: 14px;
+            color: #4B5563;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            padding: 20px;
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            height: 280px;
+        }
+
+        .chart-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: #111827;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .chart-note {
+            font-size: 13px;
+            color: #6B7280;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .highlight {
+            color: #2563EB;
+            font-weight: 600;
+        }
+
+        .caption {
+            font-size: 15px;
+            color: #4B5563;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">評価軸の定義（8項目の説明）</h1>
+            <div class="accent-bar"></div>
+            <p class="caption">各サービス評価に使用する8つの指標の定義と評価基準</p>
+            <div class="grid-container">
+                <div class="axis-container">
+                    <div class="axis-item">
+                        <div class="axis-number">1</div>
+                        <div class="axis-title">生成品質（画質・動き）</div>
+                        <div class="axis-desc">動画の解像度、細部の精細さ、動きの自然さ、物理的な整合性を評価。高スコアほど品質が高く、映像として完成度が高い。</div>
+                    </div>
+                    <div class="axis-item">
+                        <div class="axis-number">2</div>
+                        <div class="axis-title">指示追従性</div>
+                        <div class="axis-desc">プロンプトの指示内容が出力に正確に反映される度合い。高スコアほど意図した通りの映像を生成しやすい。</div>
+                    </div>
+                    <div class="axis-item">
+                        <div class="axis-number">3</div>
+                        <div class="axis-title">一貫性／ドリフト耐性</div>
+                        <div class="axis-desc">同じプロンプトで再現性の高い結果が得られるか、動画内で被写体や背景に不自然な変化（ドリフト）が生じにくいか。</div>
+                    </div>
+                    <div class="axis-item">
+                        <div class="axis-number">4</div>
+                        <div class="axis-title">速度／安定性</div>
+                        <div class="axis-desc">生成処理にかかる時間と失敗率。高スコアほど処理が速く、エラーや中断が少ない。</div>
+                    </div>
+                    <div class="axis-item">
+                        <div class="axis-number">5</div>
+                        <div class="axis-title">コスト効率</div>
+                        <div class="axis-desc">支払った費用に対して得られる秒数、解像度などの費用対効果。高スコアほど投資対効果が高い。</div>
+                    </div>
+                    <div class="axis-item">
+                        <div class="axis-number">6</div>
+                        <div class="axis-title">SNS投稿用の生成しやすさ</div>
+                        <div class="axis-desc">ソーシャルメディア向けの縦型/短尺動画生成、テンプレート活用、一貫したブランディングの容易さ。</div>
+                    </div>
+                    <div class="axis-item">
+                        <div class="axis-number">7</div>
+                        <div class="axis-title">音声・BGM対応</div>
+                        <div class="axis-desc">内蔵音声生成機能、連携オプション、後編集のしやすさ。高スコアほど音声付き動画制作の完成度が高い。</div>
+                    </div>
+                    <div class="axis-item">
+                        <div class="axis-number">8</div>
+                        <div class="axis-title">機能／エコシステム</div>
+                        <div class="axis-desc">編集・リカット機能、外部ツールとの連携性、APIやプラグインの充実度など拡張性と使い勝手の良さ。</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <div class="chart-title">8軸レーダーチャート サンプル</div>
+                        <canvas id="radarChart"></canvas>
+                        <div class="chart-note">各サービスページで<span class="highlight">1～5の5段階評価</span>を表示</div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                const ctx = document.getElementById('radarChart');
+
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['生成品質', '指示追従性', '一貫性', '速度/安定性', 'コスト効率', 'SNS対応', '音声対応', '機能/エコシステム'],
+                        datasets: [{
+                            label: 'サンプル評価',
+                            data: [4, 3, 3, 4, 5, 2, 3, 4],
+                            fill: true,
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: 'rgba(37, 99, 235, 0.8)',
+                            pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                        }]
+                    },
+                    options: {
+                        elements: {
+                            line: {
+                                borderWidth: 2
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    display: true
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 5,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

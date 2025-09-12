@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DeeVid AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 30px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+        }
+
+        .service-overview {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .overview-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+        }
+
+        .overview-title i {
+            margin-right: 10px;
+            color: #2563EB;
+        }
+
+        .overview-text p {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .chart-container {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 30px;
+            height: 320px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-wrapper {
+            width: 95%;
+            height: 285px;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        .pros,
+        .cons {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pros-title,
+        .cons-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pros-title {
+            color: #10B981;
+        }
+
+        .cons-title {
+            color: #EF4444;
+        }
+
+        .pros-title i,
+        .cons-title i {
+            margin-right: 8px;
+        }
+
+        .pros-list,
+        .cons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pros-item,
+        .cons-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .pros-item:before,
+        .cons-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .pros-item:before {
+            background-color: #10B981;
+        }
+
+        .cons-item:before {
+            background-color: #EF4444;
+        }
+
+        .use-case {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            grid-column: span 2;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .use-case-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .use-case-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .use-case-item {
+            background-color: #E5E7EB;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .use-case-item i {
+            margin-right: 6px;
+            font-size: 12px;
+            color: #4B5563;
+        }
+
+        .pricing {
+            background-color: #F9FAFB;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .pricing-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-title i {
+            margin-right: 8px;
+            color: #2563EB;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 15px;
+        }
+
+        .pricing-plan {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .plan-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .plan-price {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #2563EB;
+        }
+
+        .plan-features {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .rights {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+            font-size: 13px;
+            color: #92400E;
+            border-radius: 4px;
+        }
+
+        .rights-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rights-title i {
+            margin-right: 6px;
+        }
+
+        .impression {
+            background-color: #EFF6FF;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            grid-column: span 2;
+            border-left: 4px solid #2563EB;
+            font-size: 14px;
+            color: #1E40AF;
+        }
+
+        .impression-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .impression-title i {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">DeeVid AI</h1>
+            <div class="accent-bar"></div>
+            <div class="main-grid">
+                <div class="service-overview">
+                    <h2 class="overview-title"><i class="fas fa-info-circle"></i>サービス概要</h2>
+                    <div class="overview-text">
+                        <p>DeeVid AIは、テキスト・画像・既存動画から短編クリップを生成できるAI動画サービスです。<br /><br />
+                            Webインターフェイスに加えて、2025年夏に公開されたiOS/Androidアプリにも対応し、モバイル端末だけで完結した動画制作が可能になりました。<br /><br />
+                            クリップ長はモデルにより異なり、例えばHailuoは最大5秒、Luma Ray2は最大10秒、Veo
+                            3は最大60秒まで対応し、出力解像度は最大1080pに対応しています。<br /><br />
+                            特徴的な音声機能として、Lip
+                            Sync（口の動きと音声の同期）やテンプレート側のボイスオーバー機能を備えており、アップロードした音声やナレーションと映像を簡単に同期できます。<br /><br />
+                            また、「AI Ad Generator」などの豊富なテンプレートを用意し、用途特化のワークフローで素早く動画を生成できます。</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">パフォーマンス評価（8軸）</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h3 class="pros-title"><i class="fas fa-plus-circle"></i>長所</h3>
+                            <ul class="pros-list">
+                                <li class="pros-item">テンプレートを活用したスピーディな制作</li>
+                                <li class="pros-item">モバイル完結の運用が可能</li>
+                                <li class="pros-item">音声機能（Lip Sync）に対応</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h3 class="cons-title"><i class="fas fa-minus-circle"></i>短所</h3>
+                            <ul class="cons-list">
+                                <li class="cons-item">長尺（1分超）の連続生成には不向き</li>
+                                <li class="cons-item">モデル依存の長さ制約</li>
+                                <li class="cons-item">サービスの信頼性は確立途上</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="impression">
+                <h3 class="impression-title"><i class="fas fa-comment-dots"></i>所感（実際の使用体験）</h3>
+                <p>日本語対応しており、UIも分かりやすい点は初心者にも使いやすいと感じました。<br /><br />
+                    通常機能のクレジットは高くないものの、効果音ありの動画は生成コストが高いため、効果音付きの動画を多く作成するなら別のサービスの方がコスパが良いかもしれません。<br /><br />
+                    さまざまなエフェクトが用意されているので手軽に動画制作ができる点は魅力的です。<br /><br />
+                    中華系のサービスでやや認知度の低いサービスのため、長期的な信頼性や継続性については様子見が必要だと思われます。</p>
+            </div>
+            <div class="use-case">
+                <h3 class="use-case-title"><i class="fas fa-lightbulb"></i>主なユースケース</h3>
+                <div class="use-case-list">
+                    <span class="use-case-item"><i class="fas fa-check"></i>テンプレートを活用したSNS/広告制作</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>AI Ad Generatorでの広告ストーリー作成</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>モバイル完結の短尺クリップ制作</span>
+                </div>
+            </div>
+            <div class="pricing">
+                <h3 class="pricing-title"><i class="fas fa-tag"></i>料金プラン</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-plan">
+                        <div class="plan-name">Lite</div>
+                        <div class="plan-price">$14 / 月</div>
+                        <div class="plan-features">200クレジット・最大720p</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">Pro</div>
+                        <div class="plan-price">$35 / 月</div>
+                        <div class="plan-features">600クレジット・最大1080p</div>
+                    </div>
+                    <div class="pricing-plan">
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-price">$159 / 月</div>
+                        <div class="plan-features">3000クレジット・最大1080p</div>
+                    </div>
+                </div>
+                <div class="rights">
+                    <div class="rights-title"><i class="fas fa-exclamation-triangle"></i>透かし・権利注記</div>
+                    <p>無料版は透かし（ウォーターマーク）あり、有料会員は透かしなし・商用利用可。追加クレジットパック購入可能、クレジット有効期限は1年間。</p>
+                </div>
+            </div>
+            <script>
+                const ctx = document.getElementById('radarChart');
+
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['生成品質', '指示追従性', '一貫性', '速度/安定性', 'コスト効率', 'SNS対応', '音声対応', '機能/エコシステム'],
+                        datasets: [{
+                            label: 'DeeVid AI',
+                            data: [3, 3, 3, 3, 3, 4, 4, 4],
+                            fill: true,
+                            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                            borderColor: 'rgba(37, 99, 235, 0.8)',
+                            pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        elements: {
+                            line: {
+                                borderWidth: 2
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    display: true
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 5,
+                                ticks: {
+                                    stepSize: 1
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        layout: {
+                            padding: 20
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

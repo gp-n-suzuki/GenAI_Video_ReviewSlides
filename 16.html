@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>付録：各サービスの採点根拠</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #111827;
+            background-color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            height: 100%;
+            padding: 40px 60px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #111827;
+            border-left: 10px solid #2563EB;
+            padding-left: 20px;
+        }
+
+        .accent-bar {
+            width: 50px;
+            height: 6px;
+            background-color: #10B981;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #4B5563;
+        }
+
+        .scoring-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .scoring-table th {
+            background-color: #F3F4F6;
+            font-weight: 700;
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 15px;
+            border-bottom: 2px solid #E5E7EB;
+        }
+
+        .scoring-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .scoring-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scoring-table tr:nth-child(even) {
+            background-color: #F9FAFB;
+        }
+
+        .service-name {
+            font-weight: 700;
+            color: #111827;
+            min-width: 140px;
+        }
+
+        .score-highlight-high {
+            color: #10B981;
+            font-weight: 500;
+        }
+
+        .score-highlight-low {
+            color: #EF4444;
+            font-weight: 500;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .checklist-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #F9FAFB;
+            border-radius: 8px;
+        }
+
+        .checklist-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist-title i {
+            margin-right: 10px;
+            color: #2563EB;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px 30px;
+        }
+
+        .checklist-item {
+            position: relative;
+            padding-left: 28px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .checklist-item i {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #2563EB;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="content-wrapper">
+            <h1 class="title">付録：各サービスの採点根拠</h1>
+            <div class="accent-bar"></div>
+            <p class="intro-text">各サービスの8軸評価における採点根拠の要約です（各サービス3行以内）</p>
+            <table class="scoring-table">
+                <thead>
+                    <tr>
+                        <th width="15%">サービス名</th>
+                        <th width="28%">高評価項目</th>
+                        <th width="28%">課題項目</th>
+                        <th width="29%">総合評価</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="service-name">OpenAI Sora</td>
+                        <td><span class="score-highlight-high">コスト効率(5)：</span>定額無制限で量産向き<br /><span
+                                class="score-highlight-high">SNS対応(4)：</span>短尺多数の試作に強み</td>
+                        <td><span class="score-highlight-low">指示追従性(2)：</span>意図通りの出力が困難<br /><span
+                                class="score-highlight-low">音声対応(1)：</span>音声トラック非対応</td>
+                        <td>量産重視のユースケースに最適。短尺多数の試作で効率的だが、音声追加や高精度な指示は別途対応が必要。</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Kling AI</td>
+                        <td><span class="score-highlight-high">生成品質(4)：</span>最大2分までの長尺対応<br /><span
+                                class="score-highlight-high">コスト効率(4)：</span>低価格での高品質</td>
+                        <td><span class="score-highlight-low">UI/UX：</span>英語UIで学習コスト<br /><span
+                                class="score-highlight-low">安定性：</span>中国系サービスのため</td>
+                        <td>長尺・低価格を重視する場合の有力候補。中国発のサービスのためUI/言語面で学習コストあり。信頼性は要検討。</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Google Veo 3</td>
+                        <td><span class="score-highlight-high">生成品質(5)：</span>高品位な映像<br /><span
+                                class="score-highlight-high">音声対応(5)：</span>自動音声生成</td>
+                        <td><span class="score-highlight-low">コスト効率(3)：</span>上位プラン高額<br /><span
+                                class="score-highlight-low">アスペクト比：</span>16:9固定</td>
+                        <td>高品位の映像・音声一体生成が強み。Fastモデルとgemibiの併用で効率化可能。高コストだがプロ品質を求める場合に最適。</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Luma AI</td>
+                        <td><span class="score-highlight-high">生成品質(5)：</span>質感表現が優秀<br /><span
+                                class="score-highlight-high">品質：</span>高精細な映像表現</td>
+                        <td><span class="score-highlight-low">コスト効率(2)：</span>クレジット消費大<br /><span
+                                class="score-highlight-low">UI：</span>非日本語対応</td>
+                        <td>ワンシーンの絵作りに強く、クオリティ重視の短尺に最適。長尺連発や量産には不向きで、コストパフォーマンスに注意。</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Runway</td>
+                        <td><span class="score-highlight-high">機能/エコシステム(5)：</span>編集との連携<br /><span
+                                class="score-highlight-high">指示追従性(4)：</span>意図通り生成</td>
+                        <td><span class="score-highlight-low">長尺：</span>5/10秒単位の継ぎ足し<br /><span
+                                class="score-highlight-low">コスト：</span>Gen-4は高め</td>
+                        <td>生成と編集が一体化したワークフローが特徴。ショットごとの継ぎ足し前提の設計で、編集連携を活かした制作に最適。</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Pika Labs</td>
+                        <td><span class="score-highlight-high">SNS対応(4)：</span>カジュアル制作向き<br /><span
+                                class="score-highlight-high">コスト効率(4)：</span>低予算で実現</td>
+                        <td><span class="score-highlight-low">解像度：</span>高解像度制限<br /><span
+                                class="score-highlight-low">サポート：</span>新興企業脆弱性</td>
+                        <td>SNS向けカジュアル制作に最適。コミュニティテンプレート活用で専門知識不要の映像作成が可能。ビジネス利用は安定性に注意。</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">Midjourney</td>
+                        <td><span class="score-highlight-high">生成品質(4)：</span>画像からの動き付与<br /><span
+                                class="score-highlight-high">一貫性(4)：</span>安定した出力</td>
+                        <td><span class="score-highlight-low">音声対応(1)：</span>音声非対応<br /><span
+                                class="score-highlight-low">長尺：</span>短尺前提設計</td>
+                        <td>画像→微動き/カメラワーク付与に特化。シネマグラフ風の表現や静止画に動きを加えたい場合に適している。音声は別途必要。</td>
+                    </tr>
+                    <tr>
+                        <td class="service-name">DeeVid AI</td>
+                        <td><span class="score-highlight-high">SNS対応(4)：</span>モバイル完結<br /><span
+                                class="score-highlight-high">音声対応(4)：</span>リップシンク機能</td>
+                        <td><span class="score-highlight-low">UI：</span>テンプレート依存<br /><span
+                                class="score-highlight-low">信頼性：</span>新興サービス</td>
+                        <td>テンプレートを活用したスピード重視のSNS/広告制作に最適。モバイル完結の運用にも対応。信頼性は今後の様子見が必要。</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="checklist-container">
+                <h3 class="checklist-title"><i class="fas fa-clipboard-list"></i>評価プロセスの概要</h3>
+                <ul class="checklist">
+                    <li class="checklist-item"><i class="fas fa-check-circle"></i>各サービスの公式情報と実際の利用体験に基づく採点</li>
+                    <li class="checklist-item"><i class="fas fa-check-circle"></i>5段階評価（5：秀、4：優、3：良、2：可、1：不可）</li>
+                    <li class="checklist-item"><i class="fas fa-check-circle"></i>各軸の相対評価と市場最新状況を考慮</li>
+                    <li class="checklist-item"><i class="fas fa-check-circle"></i>実案件での運用負荷と効果を検証</li>
+                </ul>
+            </div>
+            <p class="note">※評価は2025年9月時点の情報に基づいています。アップデートにより機能や性能は変化する可能性があります。</p>
+        </div>
+    </div>
+</body>
+
+</html>
