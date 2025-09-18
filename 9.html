@@ -329,6 +329,14 @@
         .rights-title i {
             margin-right: 6px;
         }
+
+        .highlight {
+            background-color: #ECFDF5;
+            border-radius: 4px;
+            padding: 2px 4px;
+            color: #065F46;
+            font-weight: 500;
+        }
     </style>
 </head>
 
@@ -344,6 +352,9 @@
                         <p>Google DeepMindが2025年7月に公開した最新動画生成モデル「Veo 3」は、テキストや画像プロンプトから8秒間の720p動画を生成できます。</p>
                         <p>環境音・効果音・台詞まで含めた映像と音声が一体となって自動生成される点が大きな特徴です。</p>
                         <p>映画的な物理挙動や写実性に優れた高品質出力が可能で、Gemini AIプラットフォームとのインテグレーションにより、シームレスなAIワークフローを実現しています。</p>
+                        <p>最新アップデートにより、flow上で<span
+                                class="highlight">9:16（縦型）動画の生成にも対応</span>し、InstagramリールやTikTokなどのSNS向けコンテンツ制作の利便性が大幅に向上しました。
+                        </p>
                     </div>
                 </div>
                 <div>
@@ -359,14 +370,14 @@
                             <ul class="pros-list">
                                 <li class="pros-item">高品質な映像と音響が一体で自動生成</li>
                                 <li class="pros-item">プロンプト指示に従いやすくドリフトも少ない</li>
-                                <li class="pros-item">音声・台詞の品質が高く自然な出力</li>
+                                <li class="pros-item">9:16縦型動画にも対応しSNS投稿が容易</li>
                             </ul>
                         </div>
                         <div class="cons">
                             <h3 class="cons-title"><i class="fas fa-minus-circle"></i>短所</h3>
                             <ul class="cons-list">
                                 <li class="cons-item">利用コストが高め（特にUltraプラン）</li>
-                                <li class="cons-item">16:9アスペクト比固定（縦向き動画は編集必要）</li>
+                                <li class="cons-item">Top-up機能が日本では未提供</li>
                                 <li class="cons-item">画像から動画生成はgeminiからのみ可能</li>
                             </ul>
                         </div>
@@ -377,6 +388,7 @@
                 <h3 class="use-case-title"><i class="fas fa-lightbulb"></i>主なユースケース</h3>
                 <div class="use-case-list">
                     <span class="use-case-item"><i class="fas fa-check"></i>CM・映画制作のアイデア出し</span>
+                    <span class="use-case-item"><i class="fas fa-check"></i>SNS向け縦型動画コンテンツ作成</span>
                     <span class="use-case-item"><i class="fas fa-check"></i>高品質ボイスドラマ映像</span>
                     <span class="use-case-item"><i class="fas fa-check"></i>ナレーション付き動画モックアップ</span>
                 </div>
@@ -387,7 +399,10 @@
                     <p>音声付きで完成度の高い動画が作成できるのは大きな強みです。</p>
                     <p>プロンプトの指示にも比較的従い、ドリフトも少なめなので少ない回数の生成でも目的の動画を作成できます。</p>
                     <p>生成回数も最大でflowのVeo 3 Fastで50個 + geminiで1日3個 * 日数で最大140個程度生成できるので十分です。</p>
-                    <p>ただし、現状16:9のアスペクト比でのみの生成となるため、Instagram等のSNS縦向き投稿には編集が必要です。</p>
+                    <p><span
+                            class="highlight">最新アップデートでflow上での9:16縦型動画生成に対応</span>したことで、InstagramリールやTikTokなどのSNS投稿が格段に容易になりました。
+                    </p>
+                    <p>この機能により編集作業が大幅に削減され、プロンプトで直接縦型動画を指定できるようになったのは非常に便利です。</p>
                     <p>画像から動画生成はgeminiからのみ可能な点と、動画生成以外のgemini機能も使えるのは大きなメリットといえます。</p>
                 </div>
             </div>
@@ -420,7 +435,7 @@
                         labels: ['生成品質', '指示追従性', '一貫性', '速度/安定性', 'コスト効率', 'SNS対応', '音声対応', '機能/エコシステム'],
                         datasets: [{
                             label: 'Google Veo 3',
-                            data: [5, 4, 4, 4, 3, 3, 5, 4],
+                            data: [5, 4, 4, 4, 3, 4, 5, 4],
                             fill: true,
                             backgroundColor: 'rgba(37, 99, 235, 0.2)',
                             borderColor: 'rgba(37, 99, 235, 0.8)',
