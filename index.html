@@ -27,6 +27,8 @@
         .progress > span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, #22c55e, #eab308, #ef4444); transition: width .2s ease; }
         .stage { position: absolute; left: 0; right: 0; top: calc(var(--toolbar-h) + 3px); bottom: 0; }
         .frame { width: 100%; height: 100%; border: 0; background: #0b1020; }
+        .frame-layer { position: absolute; inset: 0; opacity: 0; transition: opacity .18s ease; }
+        .frame-layer.active { opacity: 1; }
         .hint { position: absolute; right: 12px; bottom: 12px; color: #94a3b8; font-size: 12px; opacity: .85; }
         @media (max-width: 640px) {
             .title { display: none; }
@@ -55,7 +57,8 @@
         </div>
         <div class="progress"><span id="progressBar"></span></div>
         <div class="stage">
-            <iframe id="slideFrame" class="frame" src="" allow="fullscreen"></iframe>
+            <iframe id="slideA" class="frame frame-layer" src="" allow="fullscreen"></iframe>
+            <iframe id="slideB" class="frame frame-layer" src="" allow="fullscreen"></iframe>
             <div class="hint">← / → で移動・Fでフルスクリーン</div>
         </div>
     </div>
@@ -65,7 +68,8 @@
             const total = 17;
             const slides = Array.from({ length: total }, (_, i) => `${i + 1}.html`);
 
-            const frame = document.getElementById('slideFrame');
+            const frameA = document.getElementById('slideA');
+            const frameB = document.getElementById('slideB');
             const select = document.getElementById('jumpSelect');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
@@ -86,6 +90,7 @@
             }
 
             let index = 1;
+            let currentFrame = frameA; // 表示中フレーム
 
             function clamp(n) { return Math.max(1, Math.min(total, n)); }
 
@@ -102,22 +107,23 @@
                 progressBar.style.width = `${(index - 1) / (total - 1) * 100}%`;
             }
 
-            function loadSlide(n, pushHash = true) {
-                index = clamp(n);
-                frame.src = slides[index - 1];
-                titleEl.textContent = '読み込み中…';
-                if (pushHash) location.hash = `#${index}`;
-                updateButtons();
-                updateMeta();
+            function filenameFromUrl(url) {
+                try { const u = new URL(url, location.href); return u.pathname.split('/').pop(); } catch { return url; }
             }
 
-            function readFrameTitle() {
+            function setActiveFrame(newActive) {
+                frameA.classList.remove('active');
+                frameB.classList.remove('active');
+                newActive.classList.add('active');
+                currentFrame = newActive;
+            }
+
+            function readFrameTitleFrom(frameEl) {
                 try {
-                    const doc = frame.contentDocument;
+                    const doc = frameEl.contentDocument;
                     if (doc && doc.title) {
                         titleEl.textContent = doc.title;
                         document.title = `${doc.title} – スライドビューア`;
-                        // 可能ならセレクトの表示名も更新
                         const opt = select.options[index - 1];
                         if (opt && !opt.textContent.includes('—')) {
                             opt.textContent = `${index}. ${doc.title}`;
@@ -128,6 +134,40 @@
                 } catch (e) {
                     titleEl.textContent = `スライド ${index}`;
                 }
+            }
+
+            function prefetchNeighbors() {
+                document.querySelectorAll('link[data-prefetch]').forEach(el => el.remove());
+                [index + 1, index - 1].filter(n => n >= 1 && n <= total).forEach(n => {
+                    const link = document.createElement('link');
+                    link.rel = 'prefetch';
+                    link.href = slides[n - 1];
+                    link.as = 'document';
+                    link.setAttribute('data-prefetch', '');
+                    document.head.appendChild(link);
+                });
+            }
+
+            function loadSlide(n, pushHash = true) {
+                index = clamp(n);
+                titleEl.textContent = '読み込み中…';
+                if (pushHash) location.hash = `#${index}`;
+                updateButtons();
+                updateMeta();
+
+                const bufferFrame = currentFrame === frameA ? frameB : frameA;
+                const targetSrc = slides[index - 1];
+
+                const onLoad = (e) => {
+                    // 直近の要求と一致するか確認（高速連打対策）
+                    if (filenameFromUrl(bufferFrame.src) !== filenameFromUrl(targetSrc)) return;
+                    setActiveFrame(bufferFrame);
+                    readFrameTitleFrom(bufferFrame);
+                    prefetchNeighbors();
+                };
+                bufferFrame.removeEventListener('load', onLoad); // 念のため
+                bufferFrame.addEventListener('load', onLoad, { once: true });
+                bufferFrame.src = targetSrc;
             }
 
             // 初期表示（URLハッシュ優先）
@@ -188,9 +228,6 @@
                 const num = parseInt((location.hash || '').replace('#', ''), 10);
                 if (!Number.isNaN(num)) loadSlide(num, false);
             });
-
-            // iframeロード時にタイトル取得
-            frame.addEventListener('load', readFrameTitle);
 
             // 初期化
             initFromHash();
