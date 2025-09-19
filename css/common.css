@@ -388,6 +388,35 @@ body {
     margin-bottom: 8px;
 }
 
+/* 12.html 用：所感（user-experience を既存の所感スタイルに合わせる） */
+.user-experience {
+    background-color: #F0F9FF;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #2563EB;
+}
+
+.user-experience-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    color: #2563EB;
+}
+
+.user-experience-title i {
+    margin-right: 8px;
+}
+
+.user-experience p {
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
 /* 料金プラン */
 .pricing {
     background-color: #F9FAFB;
