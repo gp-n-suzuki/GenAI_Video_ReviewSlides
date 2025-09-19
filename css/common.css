@@ -642,3 +642,337 @@ body {
     color: #4B5563;
     margin-left: 8px;
 }
+
+/* 15.html 用：用途別推奨シナリオ */
+.scenarios-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.scenario {
+    margin-bottom: 25px;
+}
+
+.scenario-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #2563EB;
+    color: white;
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.recommendation {
+    padding-left: 44px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.service-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-right: 10px;
+    min-width: 130px;
+}
+
+.tag-primary {
+    background-color: rgba(37, 99, 235, 0.1);
+    color: #2563EB;
+}
+
+.tag-secondary {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+}
+
+.checklist-container {
+    background-color: #F9FAFB;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 30px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.checkbox {
+    min-width: 22px;
+    height: 22px;
+    border: 2px solid #2563EB;
+    border-radius: 4px;
+    margin-right: 12px;
+    position: relative;
+}
+
+.section-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2563EB;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.divider {
+    height: 1px;
+    background-color: #E5E7EB;
+    margin: 30px 0;
+}
+
+/* 16.html 用：採点根拠テーブル */
+.intro-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #4B5563;
+}
+
+.scoring-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.scoring-table th {
+    background-color: #F3F4F6;
+    font-weight: 700;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 15px;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.scoring-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #E5E7EB;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.scoring-table tr:last-child td {
+    border-bottom: none;
+}
+
+.scoring-table tr:nth-child(even) {
+    background-color: #F9FAFB;
+}
+
+.service-name {
+    min-width: 140px;
+}
+
+.score-highlight-high {
+    color: #10B981;
+    font-weight: 500;
+}
+
+.score-highlight-low {
+    color: #EF4444;
+    font-weight: 500;
+}
+
+.checklist-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.checklist-title i {
+    margin-right: 10px;
+    color: #2563EB;
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px 30px;
+}
+
+.checklist .checklist-item {
+    position: relative;
+    padding-left: 28px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.checklist .checklist-item i {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #2563EB;
+}
+
+/* 17.html 用：次アクションとタイムライン */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.action-block {
+    background-color: #F9FAFB;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.action-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: #111827;
+}
+
+.action-title i {
+    margin-right: 12px;
+    color: #2563EB;
+    font-size: 20px;
+}
+
+.action-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.action-item {
+    position: relative;
+    padding: 8px 0 8px 35px;
+    font-size: 15px;
+    line-height: 1.4;
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+}
+
+.action-item:last-child {
+    border-bottom: none;
+}
+
+.action-item i {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2563EB;
+    font-size: 18px;
+}
+
+.action-item .priority {
+    margin-left: auto;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.priority-high {
+    background-color: #FEE2E2;
+    color: #EF4444;
+}
+
+.priority-medium {
+    background-color: #FEF3C7;
+    color: #D97706;
+}
+
+.priority-low {
+    background-color: #DBEAFE;
+    color: #2563EB;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 120px;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: -60px;
+    width: 120px;
+    height: 3px;
+    background-color: #E5E7EB;
+    z-index: 1;
+}
+
+.timeline-item:first-child::before {
+    display: none;
+}
+
+.timeline-dot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #F3F4F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+    border: 2px solid #D1D5DB;
+}
+
+.timeline-dot.active {
+    background-color: #DBEAFE;
+    border-color: #2563EB;
+}
+
+.timeline-dot i {
+    color: #6B7280;
+    font-size: 20px;
+}
+
+.timeline-dot.active i {
+    color: #2563EB;
+}
+
+.timeline-text {
+    font-size: 13px;
+    text-align: center;
+    font-weight: 500;
+    color: #4B5563;
+}
